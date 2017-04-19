@@ -14,6 +14,7 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var queryInput: NSTextField!
     @IBAction func performButton(_ sender: Any) {
+       print(queryTypeButton.indexOfSelectedItem)
     }
     @IBOutlet weak var queryTypeButton: NSPopUpButtonCell!
 
