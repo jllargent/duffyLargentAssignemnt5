@@ -9,9 +9,22 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
+    var queryTypeArray = ["Name","Username","Facebook Friend","Reddit Post","Twitter Following","Social Media","Age Range","Snapchat Story","Reddit Karma","Twitter Followers"]
 
+    @IBOutlet weak var queryInput: NSTextField!
+    @IBAction func performButton(_ sender: Any) {
+    }
+    @IBOutlet weak var queryTypeButton: NSPopUpButtonCell!
+
+    
+        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        queryTypeButton.removeAllItems()
+        queryTypeButton.addItems(withTitles: queryTypeArray)
+
 
         // Do any additional setup after loading the view.
     }
@@ -21,7 +34,6 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
 
 }
 
