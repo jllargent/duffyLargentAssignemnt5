@@ -11,15 +11,33 @@ import Cocoa
 class ViewController: NSViewController {
     
     var queryTypeArray = ["Name","Username","Facebook Friend","Reddit Post","Twitter Following","Social Media","Age Range","Snapchat Story","Reddit Karma","Twitter Followers"]
-
+    var results = ""
     var query = ""
     var queryType = 0
+    var nameDictionary = ["Trent Kaniuga":["Irvine, California","","English","TrentKaniuga","","","","trent_k_arts"],
+        "Charlie Bowater":["United Kingdom","","English","charliebowater","","","","charliebowater"],
+        "Matt Carriker":["Texas","","English","demolitionranch","","","","demolition_ranch"],
+        "Julia Largent":["Ohio","16-JAN-89","English","jellos4peace","Julia Largent","Jellos4peace","Jellos4peace","Jellos4peace"],
+        "Aidan Kearney":["Muncie, Indiana","31-MAR-95","English","kearnishmas","Aidan Kearney","kearnishmas","","francisfordcawpolla"],
+        "Meghan Duffy":["Simpsonville, SC","01-JAN-96","English","smalls2233","mrduffy@bsu.edu","smalls2233","smalls2233","smalls2233"],
+        "Jon Largent":["Muncie, IN","15-FEB-86","English","jon_largent","jllargent@gmail.com","mushsogene","mushsogene","jllargent"],
+        "Nick Dowell":["Indianapolis, IN","16-APR-93","English","ncdowell","Nick Dowell","ncdowell","IAmTheWeregoose","ncdowell"],
+        "Carly Jensen":["Warrensburg, MO","19-JAN-94","English","carlywankenobi","Carly Jensen","sassyhairflip","","carlywankenobi"],
+        "Basil":["North Carolina","25-AUG-92","English","BasilGard3n","Smallherbfriend","","","Nerdcraftcrochets "],
+        "Matthew Yapp":["Muncie indiana","03-JUN-98","English","Mattyappish","","Mattyappish","","Mattyappish"],
+        "Jack McGinnis":["Muncie indiana","31-MAR-98","English","NativeAbearican","Jack T McGinnis","","",""],
+        "Divya":["","12-MAY-96","English","legendofdivya","Divya Sarda","divi_s5","","legendofdivya"],
+        "Amy Rose Williams ":["Solihull, England ","15-APR-92","English","CaptainLuxCanis","Amii Rose","","","CaptainLuxCanis"],
+        "Nicole Gustafsson":["Washington","","English","Nimasprout","","","","Nimasprout"]
+    ]
+
+    
+    @IBOutlet var resultsTextViewer: NSTextView!
+    @IBOutlet weak var resultsViewer: NSScrollView!
     @IBOutlet weak var queryInput: NSTextField!
     @IBAction func performButton(_ sender: Any) {
         queryType = queryTypeButton.indexOfSelectedItem
         query = queryInput.stringValue
-        print(queryType)
-        print(query)
         
         switch queryType {
         case 0: nameChoice(query: query)
@@ -57,6 +75,20 @@ class ViewController: NSViewController {
 
     func nameChoice(query: String) {
         print("name choice " + query)
+        for (name, info) in nameDictionary{
+            results = "Name     Location        Brithdate       Language        Twitter Username    Facebook Username   Snapchat Username   Reddit Username Instagram Username \n"
+            if query.caseInsensitiveCompare(name) == .orderedSame{
+                results.append(name + "    ")
+                for data in info{
+                    results.append(data + "   ")
+                }
+                results.append("\n")
+                print(results)
+                let printResults = NSMutableAttributedString(string: results)
+                resultsTextViewer.textStorage?.append(printResults)
+                
+            }
+        }
     }
     
     func usernameChoice(query: String) {
